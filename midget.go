@@ -14,7 +14,8 @@ func main() {
 	s.Init()
 
 	http.Handle("/", handlers.Redirect(s))
-	http.Handle("/process", handlers.Process(s))
+	http.Handle("/encode", handlers.Encode(s))
+	http.Handle("/decode/", handlers.Decode(s))
 
 	port := os.Getenv("PORT")
 	if port == "" {
