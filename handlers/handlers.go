@@ -22,10 +22,12 @@ func Encode(storage storage.Storage) http.Handler {
 		if r.Method != "POST" {
 			respond(&MidgetResponse{
 				Status:  404,
-				Message: "method not found\n",
+				Message: "method not found",
 			}, w)
 			return
 		}
+
+		log.Printf("Method is %s\n", r.Method)
 
 		decoder := json.NewDecoder(r.Body)
 		var req EncodeRequest
@@ -47,7 +49,7 @@ func Decode(storage storage.Storage) http.Handler {
 		if r.Method != "GET" {
 			respond(&MidgetResponse{
 				Status:  404,
-				Message: "method not found\n",
+				Message: "method not found",
 			}, w)
 			return
 		}
@@ -57,8 +59,8 @@ func Decode(storage storage.Storage) http.Handler {
 		url, err := storage.Retrieve(code)
 		if err != nil {
 			respond(&MidgetResponse{
-				Status:  404,
-				Message: "Error: URL not found for code: " + code,
+				Status:  204,
+				Message: "invalid code " + code,
 			}, w)
 			return
 		}
