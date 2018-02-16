@@ -9,6 +9,13 @@ It can encode, decode and redirect URLs.
 
 ### Usage
 
+To test:
+
+```sh
+$ make deps
+$ make test
+```
+
 To quickly get started, there are pre-built binaries under GitHub Releases
 
 This app was built and tested with `go-1.9.4`.
